@@ -9,7 +9,7 @@ class Solution:
             sm+=a[i]
             if sm==0:
                 res=max(res, i+1)
-            elif sm in mp:
+            if sm in mp:
                 res=max(res, i-mp[sm])
             else:
                 mp[sm]=i
