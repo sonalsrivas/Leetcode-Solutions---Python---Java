@@ -10,7 +10,8 @@ class Solution:
             return a
         if abs(x-root.val)<abs(x-a):
             a=root.val
-        l=self.closestValue(root.left,x,a)
-        r=self.closestValue(root.right,x,a)
-        b= l if abs(x-l)<abs(x-r) else r
+        if x>root.val:
+            b=self.closestValue(root.right,x,a)
+        else:
+            b=self.closestValue(root.left,x,a)
         return b if abs(x-b)<abs(x-a) else a
