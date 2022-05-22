@@ -12,8 +12,7 @@ class Solution:
         return list(self.h(root, t,k, D([])))
     
     def h(self, root: Optional[TreeNode], t: float, k: int, d) -> List[int]:
-        if not root:    
-          return d
+        if not root:    return d
         
         self.h(root.left, t, k, d)
         
@@ -27,5 +26,4 @@ class Solution:
         else:
             d.append(root.val)
         self.h(root.right, t, k,d)
-        
         return d
