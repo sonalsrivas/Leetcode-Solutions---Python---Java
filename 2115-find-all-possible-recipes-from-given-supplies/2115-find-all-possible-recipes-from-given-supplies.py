@@ -12,7 +12,7 @@ class Solution:
                 return 0
 
             for ingredients_ in recipeIngredientMap[recipe]:
-                if ingredients_ not in visitedRecipeStatus and ingredients_ not in supplies: #.get(ingredients_,3)==3:
+                if ingredients_ not in visitedRecipeStatus and ingredients_ not in supplies:
                     DFSrecipe(ingredients_)
 
                 if ingredients_ in supplies or visitedRecipeStatus.get(ingredients_)==1:
