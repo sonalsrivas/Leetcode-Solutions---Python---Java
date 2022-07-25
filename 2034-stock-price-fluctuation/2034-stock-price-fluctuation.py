@@ -22,12 +22,11 @@ class StockPrice:
         self.tp=dict()
 
     def update(self, timestamp: int, price: int) -> None:
-        
         self.tp[timestamp]=price
         a=self.record
         n=len(a); t=timestamp
         l=binarySearch(self.record, timestamp, price)
-        #self.record.insert(indexToInsertIn, [timestamp, price])
+        
         if l<n and a[l][0]==t:
             a[l][1]=price
                 
@@ -35,31 +34,25 @@ class StockPrice:
             a.insert(l, [t,price])
         else:
             a.append([t,price])
+        
         heapq.heappush(self.max, (-price, timestamp))
         heapq.heappush(self.min, (price, timestamp))
-        #print(self.record, self.max, self.min)
-
+        
     def current(self) -> int:
         return self.record[-1][1]
 
     def maximum(self) -> int:
-        p,t=p,t=self.max[0]#heapq.heappop(self.max)
+        p,t=p,t=self.max[0]
         while -self.tp[t]!=p:
             heapq.heappop(self.max)
             p,t=self.max[0]
-            """if t not in tp:
-                heapq.heappop(self.max) 
-                p,t=self.max[0]"""
         return -p
 
     def minimum(self) -> int:
-        p,t=self.min[0]#heapq.heappop(self.min)
+        p,t=self.min[0]
         while self.tp[t]!=p:
             heapq.heappop(self.min)
             p,t=self.min[0]
-            """if t not in tp:
-                heapq.heappop(self.min) 
-                p,t=self.min[0]"""
         return p
 
 
