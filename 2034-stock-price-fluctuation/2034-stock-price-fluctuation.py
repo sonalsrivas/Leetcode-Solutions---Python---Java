@@ -27,11 +27,7 @@ class StockPrice:
         n=len(a); t=timestamp
         l=binarySearch(self.timestampSorted, timestamp)
 
-        if l<n and a[l]==t:
-            pass
-            #a[l][1]=price
-
-        elif l<n and a[l]>=t:
+        if l<n and a[l]>=t:
             a.insert(l, t)
         else:
             a.append(t)
