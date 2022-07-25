@@ -1,49 +1,38 @@
 import heapq
-def binarySearch(a,t):
-    n=len(a)
-    l=0
-    r=n-1
-    while l<r:
-        m=(l+r)//2
-        if a[m]<t:
-            l=m+1
-        else:
-            r=m
-    return l
+
 
 class StockPrice:
 
     def __init__(self):
-        self.max=[]
-        self.min=[]
+        self.max = []
+        self.min = []
         heapq.heapify(self.max)
         heapq.heapify(self.min)
-        self.latestTimestamp=0
-        self.tp=dict()
+        self.latestTimestamp = 0
+        self.timestampPrice = dict()
 
     def update(self, timestamp: int, price: int) -> None:
-        self.tp[timestamp]=price
-        self.latestTimestamp=max(self.latestTimestamp, timestamp)
+        self.timestampPrice[timestamp] = price
+        self.latestTimestamp = max(self.latestTimestamp, timestamp)
         heapq.heappush(self.max, (-price, timestamp))
         heapq.heappush(self.min, (price, timestamp))
 
     def current(self) -> int:
-        return self.tp[self.latestTimestamp]
+        return self.timestampPrice[self.latestTimestamp]
 
     def maximum(self) -> int:
-        p,t=p,t=self.max[0]
-        while -self.tp[t]!=p:
+        maxPrice, corTime = self.max[0]
+        while -self.timestampPrice[corTime] != maxPrice:
             heapq.heappop(self.max)
-            p,t=self.max[0]
-        return -p
+            maxPrice, corTime = self.max[0]
+        return -maxPrice
 
     def minimum(self) -> int:
-        p,t=self.min[0]
-        while self.tp[t]!=p:
+        minPrice, corTime = self.min[0]
+        while self.timestampPrice[corTime] != minPrice:
             heapq.heappop(self.min)
-            p,t=self.min[0]
-        return p
-
+            minPrice, corTime = self.min[0]
+        return minPrice
 
 # Your StockPrice object will be instantiated and called as such:
 # obj = StockPrice()
