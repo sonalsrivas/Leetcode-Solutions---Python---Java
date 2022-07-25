@@ -18,25 +18,17 @@ class StockPrice:
         self.min=[]
         heapq.heapify(self.max)
         heapq.heapify(self.min)
-        self.timestampSorted=[]
+        self.latestTimestamp=0
         self.tp=dict()
 
     def update(self, timestamp: int, price: int) -> None:
         self.tp[timestamp]=price
-        a=self.timestampSorted
-        n=len(a); t=timestamp
-        l=binarySearch(self.timestampSorted, timestamp)
-
-        if l<n and a[l]>=t:
-            a.insert(l, t)
-        else:
-            a.append(t)
-
+        self.latestTimestamp=max(self.latestTimestamp, timestamp)
         heapq.heappush(self.max, (-price, timestamp))
         heapq.heappush(self.min, (price, timestamp))
 
     def current(self) -> int:
-        return self.tp[self.timestampSorted[-1]]
+        return self.tp[self.latestTimestamp]
 
     def maximum(self) -> int:
         p,t=p,t=self.max[0]
