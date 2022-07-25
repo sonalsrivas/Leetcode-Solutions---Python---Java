@@ -1,11 +1,11 @@
 import heapq
-def binarySearch(a,t, price):
+def binarySearch(a,t):
     n=len(a)
     l=0
     r=n-1
     while l<r:
         m=(l+r)//2
-        if a[m][0]<t:
+        if a[m]<t:
             l=m+1
         else:
             r=m
@@ -18,28 +18,29 @@ class StockPrice:
         self.min=[]
         heapq.heapify(self.max)
         heapq.heapify(self.min)
-        self.record=[]
+        self.timestampSorted=[]
         self.tp=dict()
 
     def update(self, timestamp: int, price: int) -> None:
         self.tp[timestamp]=price
-        a=self.record
+        a=self.timestampSorted
         n=len(a); t=timestamp
-        l=binarySearch(self.record, timestamp, price)
-        
-        if l<n and a[l][0]==t:
-            a[l][1]=price
-                
-        elif l<n and a[l][0]>=t:
-            a.insert(l, [t,price])
+        l=binarySearch(self.timestampSorted, timestamp)
+
+        if l<n and a[l]==t:
+            pass
+            #a[l][1]=price
+
+        elif l<n and a[l]>=t:
+            a.insert(l, t)
         else:
-            a.append([t,price])
-        
+            a.append(t)
+
         heapq.heappush(self.max, (-price, timestamp))
         heapq.heappush(self.min, (price, timestamp))
-        
+
     def current(self) -> int:
-        return self.record[-1][1]
+        return self.tp[self.timestampSorted[-1]]
 
     def maximum(self) -> int:
         p,t=p,t=self.max[0]
