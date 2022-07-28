@@ -9,7 +9,6 @@ class Solution:
             ori_i=i
             num=0
             while i<n:
-                print("i,s[i], c, num => ",i,s[i],c, num,'STRING : ', string)
                 if s[i]=='[':
                     c+=1
                     if i>ori_i:
@@ -34,11 +33,7 @@ class Solution:
                         return string, i
                     i+=1
                     
-            print("here....", string, i, n)
-            #print("s,i,c,n=> ",string,i,c,n)
             return string,i
-            #print("Returning raw string ", raw,k)
-            #return raw, k
-        #print("s,n ..... ",s,n)
+            
         res, i=helper(s, 0, n)
         return res
