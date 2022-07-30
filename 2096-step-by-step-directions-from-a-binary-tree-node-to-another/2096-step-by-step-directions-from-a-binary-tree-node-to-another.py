@@ -18,7 +18,7 @@ class Solution:
             self.nodeT = self.lookForNode(lca, t)
         sPath = self.findPath(lca, self.nodeS)
         tPath = self.findPath(lca, self.nodeT)
-        pathString = self.reverseDirectionVertically(sPath[1]) + tPath[1]
+        pathString = 'U' * len(sPath[1]) + tPath[1]
         return pathString
 
     def lookForNode(self, root, value):
