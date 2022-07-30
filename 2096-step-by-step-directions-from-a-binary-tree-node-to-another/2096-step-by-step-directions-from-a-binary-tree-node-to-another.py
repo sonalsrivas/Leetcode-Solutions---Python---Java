@@ -41,9 +41,6 @@ class Solution:
             return foundInRight, 'R' + rightPath
         return foundInLeft, 'L' + leftPath
 
-    def reverseDirectionVertically(self, dirs):
-        return 'U' * len(dirs)
-
     def findLCA(self, root, s, t):
         if not root:
             return
