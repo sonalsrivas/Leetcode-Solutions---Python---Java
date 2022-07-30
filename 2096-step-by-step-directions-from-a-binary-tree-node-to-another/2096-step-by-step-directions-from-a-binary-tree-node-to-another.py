@@ -5,14 +5,10 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    S = ''
-    T = ''
     nodeS = None
     nodeT = None
 
     def getDirections(self, root, s, t):
-        self.S = ''
-        self.T = ''
         self.nodeS = None
         self.nodeT = None
         lca = self.findLCA(root, s, t)
@@ -28,7 +24,7 @@ class Solution:
     def lookForNode(self, root, value):
         if not root:
             return None
-        if (root.val == value):
+        if root.val == value:
             return root
         l = self.lookForNode(root.left, value)
         r = self.lookForNode(root.right, value)
@@ -44,11 +40,6 @@ class Solution:
         if foundInRight:
             return foundInRight, 'R' + rightPath
         return foundInLeft, 'L' + leftPath
-
-    def heightOfNode(self, root, node):
-        if root == node or not root:
-            return 0
-        return 1 + self.heightOfNode(root.left, node) + self.heightOfNode(root.right, node)
 
     def reverseDirectionVertically(self, dirs):
         return 'U' * len(dirs)
