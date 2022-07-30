@@ -16,17 +16,12 @@ class Solution:
         n=2**(height+1)-1
         a=[['' for i in range(n)] for _ in range(m)]
         
-        # place root
-        
-        
-        #a[0][(n-1)//2]=str(root.val)
-        
         def placeNodeInA(root, x,y,h):
             if not root:
                 return
             a[x][y]=str(root.val)
-            #a[x+1][y-2**(h-x-1)]=
             placeNodeInA(root.left, x+1, y-2**(h-x-1),h)
             placeNodeInA(root.right, x+1, y+2**(h-x-1),h)
         placeNodeInA(root, 0, (n-1)//2,height)
+        
         return a
