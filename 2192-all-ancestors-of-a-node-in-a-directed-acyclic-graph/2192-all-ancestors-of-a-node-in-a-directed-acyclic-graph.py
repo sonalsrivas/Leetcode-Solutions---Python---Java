@@ -18,7 +18,7 @@ class Solution:
         reversedAdjacencyList = defaultdict(list)
         for u, v in edges:
             reversedAdjacencyList[v].append(u)
-        ancestors = [None for _ in range(n)]
+        ancestors = [() for _ in range(n)]
         for i in range(n):
             if not ancestors[i]:
                 ancestors[i] = helper(i)
