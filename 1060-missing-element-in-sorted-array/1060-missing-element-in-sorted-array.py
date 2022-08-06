@@ -1,17 +1,22 @@
 class Solution:
-    def missingElement(self, a: List[int], k: int) -> int:
-        n=len(a)
-        l=0
-        r=n-1
-        noOfMissingNumsInList=a[r]-a[l]-(r-l)
+    def missingElement(self, nums: List[int], k: int) -> int:
+        n=len(nums)
+        left=0
+        right=n-1
+        
+        noOfMissingNumsInList=nums[right]-nums[left]-(right-left)
+        
         if noOfMissingNumsInList<k:
-            return a[r]+k-noOfMissingNumsInList
-        while l<r-1:
-            m=(l+r)//2
-            noOfMissingNumsBtwLM=a[m]-a[l]-(m-l)
+            return nums[right]+k-noOfMissingNumsInList
+        
+        while left<right-1:
+            mid=(left+right)//2
+            noOfMissingNumsBtwLM=nums[mid]-nums[left]-(mid-left)
+            
             if noOfMissingNumsBtwLM>=k:
-                r=m
+                right=mid
             else:
                 k-=noOfMissingNumsBtwLM
-                l=m
-        return a[l]+k
+                left=mid
+        
+        return nums[left]+k
