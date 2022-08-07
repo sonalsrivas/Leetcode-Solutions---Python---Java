@@ -9,9 +9,6 @@ class Solution:
             index=stack[-1][1]
             if c!=part[index]:
                 stack.append((c,index))
-            # elif c==part[0]:
-            #     index=0
-            #     stack.append((c,index))
             else:
                 index+=1
                 stack.append((c,index))
