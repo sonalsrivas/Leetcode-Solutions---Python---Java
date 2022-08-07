@@ -1,9 +1,6 @@
-import string
-
-
 class Trie:
-    substrHashes = {}
-    commons=set()
+    subStringHashes = {}
+
     def __init__(self, folder=['/']):
         self.folder = folder
         self.subfolderMap = {}
@@ -20,15 +17,13 @@ class Trie:
     def hashTheSubstructure(self):
         node = self
         for char in sorted(node.subfolderMap):
-            node.hashedSubStructure += '-'+node.subfolderMap[char].hashTheSubstructure()+'/'
-        #print(f"Node {node.folder} has hashed subtree structure : {node.hashedSubStructure}")
+            node.hashedSubStructure += '-' + node.subfolderMap[char].hashTheSubstructure() + '/'
 
-        if node.hashedSubStructure not in Trie.substrHashes or node.hashedSubStructure == '':
-            Trie.substrHashes[node.hashedSubStructure] = node
+        if node.hashedSubStructure not in Trie.subStringHashes or node.hashedSubStructure == '':
+            Trie.subStringHashes[node.hashedSubStructure] = node
         else:
-            Trie.commons.add(node.hashedSubStructure)
             node.markForDeletion = True
-            Trie.substrHashes[node.hashedSubStructure].markForDeletion = True
+            Trie.subStringHashes[node.hashedSubStructure].markForDeletion = True
         return node.folder[-1] + node.hashedSubStructure
 
 
@@ -36,8 +31,7 @@ class Solution:
     def deleteDuplicateFolder(self, paths):
         n = len(paths)
 
-        Trie.substrHashes = {}
-        Trie.commons=set()
+        Trie.subStringHashes = {}
 
         folderNode = Trie()
 
@@ -45,7 +39,6 @@ class Solution:
             folderNode.add(path)
         folderNode.hashTheSubstructure()
 
-        #print(Trie.commons)
         res = []
 
         def DFS(node):
