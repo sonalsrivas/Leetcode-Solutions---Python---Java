@@ -3,6 +3,7 @@ class Trie:
         self.filePath=filePath
         self.children={}  # {fileName : TrieNode , ...}
         self.value=value
+    
     def add(self, file,val):
         res=Trie.checkIfValidPath(self, file)
         if res==False:
@@ -14,16 +15,17 @@ class Trie:
         parent.children[newFile]=newNode
         newNode.value=val
         return True
+    
     def checkIfValidPath(node, filePath):
         filePath=filePath.split('/')
         probableNewFile=filePath[-1]
-        #print(filePath, probableNewFile)
         for file in filePath[1:-1]:
             if not file in node.children:
                 return False
             node=node.children[file]
-        #print("lkmd  s, ", node, probableNewFile)
         return node, probableNewFile
+    
+    
 class FileSystem:
 
     def __init__(self):
