@@ -6,18 +6,22 @@
 #         self.right = right
 class Solution:
     def subtreeWithAllDeepest(self, root: TreeNode) -> TreeNode:
+        
         def LCAnHeight(root):
             if not root:
-                return None, 0#height
+                return None, 0
             if not root.left and not root.right:
-                return root, 1#height+1
+                return root, 1
+            
             leftLCA, leftHeight=LCAnHeight(root.left)
             rightLCA, rightHeight=LCAnHeight(root.right)
-            if leftHeight==rightHeight and leftLCA and rightLCA:
+            
+            if leftHeight==rightHeight:
                 return root, leftHeight+1
             elif leftHeight>rightHeight:
                 return leftLCA, leftHeight+1
             elif leftHeight<rightHeight:
                 return rightLCA, rightHeight+1
+
         return LCAnHeight(root)[0]
             
