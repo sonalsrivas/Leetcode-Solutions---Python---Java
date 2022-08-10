@@ -32,12 +32,8 @@
 
 class Solution:
     allDirections=((0,-1),(-1,0),(0,1),(1,0))
-    time=0
     def cleanRoom(self, robot):
-        """
-        :type robot: Robot
-        :rtype: None
-        """
+        
         visitednCleaned=set()
         def cleannBacktrack(x,y,direction):
             robot.clean()
@@ -57,5 +53,5 @@ class Solution:
             robot.move()
             robot.turnRight()
             robot.turnRight()
-            Solution.time+=1
+            
         cleannBacktrack(0,0,0)
