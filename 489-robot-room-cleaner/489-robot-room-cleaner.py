@@ -35,6 +35,13 @@ class Solution:
     def cleanRoom(self, robot):
         
         visitednCleaned=set()
+        def backtrack():
+            robot.turnRight()
+            robot.turnRight()
+            robot.move()
+            robot.turnRight()
+            robot.turnRight()
+            
         def cleannBacktrack(x,y,direction):
             robot.clean()
             visitednCleaned.add((x,y))
@@ -46,12 +53,7 @@ class Solution:
                 j+=y
                 if (i,j) not in visitednCleaned and robot.move():
                     cleannBacktrack(i,j,direc)
+                    backtrack()
                 robot.turnRight()
                 
-            robot.turnRight()
-            robot.turnRight()
-            robot.move()
-            robot.turnRight()
-            robot.turnRight()
-            
         cleannBacktrack(0,0,0)
