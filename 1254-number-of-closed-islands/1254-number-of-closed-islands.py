@@ -11,10 +11,8 @@ class Solution:
             closedIslandFlag=1
             q=deque()
             q.append((i,j))
-            #q=queue.Queue()
-            #q.put((i,j))
             
-            while q:#not q.empty():
+            while q:
                 x,y=q.popleft()
                 grid[x][y]=1
                 for g,h in neighbours:
