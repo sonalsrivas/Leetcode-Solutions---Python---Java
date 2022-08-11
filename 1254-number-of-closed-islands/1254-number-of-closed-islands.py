@@ -9,17 +9,19 @@ class Solution:
         
         def BFS(i,j,m,n):
             closedIslandFlag=1
-            q=queue.Queue()
-            q.put((i,j))
+            q=deque()
+            q.append((i,j))
+            #q=queue.Queue()
+            #q.put((i,j))
             
-            while not q.empty():
-                x,y=q.get()
+            while q:#not q.empty():
+                x,y=q.popleft()
                 grid[x][y]=1
                 for g,h in neighbours:
                     g+=x; h+=y
                     if -1<g<m and -1<h<n:
                         if grid[g][h]==0:
-                            q.put((g,h))
+                            q.append((g,h))
                     else:
                         closedIslandFlag=0
                         
