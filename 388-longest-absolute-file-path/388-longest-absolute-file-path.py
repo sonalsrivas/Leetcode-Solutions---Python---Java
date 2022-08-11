@@ -1,7 +1,5 @@
 class Solution:
     def lengthLongestPath(self, s: str) -> int:
-        if s=="dir\n        file.txt":
-            return 16
         n=len(s)
         longestAbsFilePath=0
         stack=[(0,-1)]
@@ -13,17 +11,15 @@ class Solution:
                 while s[i]=='\t':
                     level+=1
                     i+=1
-            #print("level==>",level,i)
+            
             fpCount=0 if not level else 1
-            #print("fpCount= ",fpCount)
+            
             isFile=False
             while i<n and s[i]!='\n':
                 fpCount+=1
                 if s[i]=='.':
                     isFile=True
                 i+=1
-            #print(i,fpCount,stack, isFile)
-            prevCount=0 if not stack else stack[-1][0]
             
             if stack:
                 prevCount, prevLevel=stack[-1]
@@ -34,9 +30,6 @@ class Solution:
             if isFile:
                 longestAbsFilePath=max(longestAbsFilePath,fpCount+prevCount)
             else:
-                
-                
                 stack.append((fpCount+prevCount, level))
             
-            #i+=1
         return longestAbsFilePath
