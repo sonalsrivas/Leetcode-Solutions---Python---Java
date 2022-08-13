@@ -4,7 +4,6 @@ class Solution:
         
         u,v = d.popitem()
         while True:
-            print(u,v)
             if v not in d:
                 return v
             u=v
