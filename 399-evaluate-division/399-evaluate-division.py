@@ -6,25 +6,23 @@ class Solution:
             u,v=uv
             adjList[v].append((u,val))
             adjList[u].append((v,1/val))
-        #print(adjList)
+        
         res=[]
-        for y,x in queries:
-            #print(x,y)
+        for x,y in queries:
             if x not in adjList or y not in adjList:
                 res.append(-1)
                 continue
             
             vis={i:0 for i in adjList}
             q=deque()
-            q.append((x,1))
-            vis[x]=1
+            q.append((y,1))
+            vis[y]=1
             endFlag=False
             while q:
                 z,prod=q.popleft()
-                #print(z,prod)
                 vis[z]=1
                 for neigh in adjList[z]:
-                    if neigh[0]==y:
+                    if neigh[0]==x:
                         res.append(prod*neigh[1])
                         endFlag=True
                         break
@@ -32,7 +30,6 @@ class Solution:
                         q.append((neigh[0],prod*neigh[1]))
                 if endFlag:
                     break
-            if x!=z and not endFlag:
-                print(x,y,z,prod)
+            if y!=z and not endFlag:
                 res.append(-1)
         return res
