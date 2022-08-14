@@ -21,15 +21,17 @@ class Solution:
             while q:
                 z,prod=q.popleft()
                 vis[z]=1
-                for neigh in adjList[z]:
-                    if neigh[0]==x:
-                        res.append(prod*neigh[1])
+                for neigh,neighVal in adjList[z]:
+                    if neigh==x:
+                        res.append(prod*neighVal)
                         endFlag=True
                         break
-                    elif vis[neigh[0]]==0:
-                        q.append((neigh[0],prod*neigh[1]))
+                    elif vis[neigh]==0:
+                        cur=neigh
+                        q.append((neigh,prod*neighVal))
                 if endFlag:
                     break
+            #print(x,y,cur,z)
             if y!=z and not endFlag:
                 res.append(-1)
         return res
