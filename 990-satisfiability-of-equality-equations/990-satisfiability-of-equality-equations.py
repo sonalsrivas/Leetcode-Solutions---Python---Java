@@ -17,6 +17,7 @@ class Solution:
         for eq in equations:
             u,op,v=eq[0],eq[1],eq[3]
             if op=='!':
+                # if u and v are connected by virtue of == operation, this one is a voilation of the same.
                 if find(u)==find(v):
                     return False
         return True
