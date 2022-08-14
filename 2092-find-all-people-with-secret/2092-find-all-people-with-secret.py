@@ -17,7 +17,6 @@ class Solution:
         mapTimeEdges=defaultdict(list)
         for u,v,t in meetings:
             mapTimeEdges[t].append((u,v))
-        #print("mapTimeEdges= ",mapTimeEdges)
         
         SecretPossessor=[0]*n
         SecretPossessor[0]=1
@@ -29,7 +28,6 @@ class Solution:
         for time in sorted(mapTimeEdges):
             pool=set()
             for edge in mapTimeEdges[time]:
-                #print(edge)
                 u,v=edge
                 union(u,v)
                 pool.add(u)
@@ -40,5 +38,4 @@ class Solution:
                 else:
                     d[person]=person
                 
-        #print(SecretPossessor)
         return [i for i in range(n) if SecretPossessor[i]==1]
