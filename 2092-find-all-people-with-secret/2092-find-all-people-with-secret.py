@@ -1,8 +1,3 @@
-class GraphNode:
-    def __init__(self, person):
-        self.person=person
-        self.neighbours=set()       #   (the neighbour and time)
-        #self.time=float("inf")
 class Solution:
     def findAllPeople(self, n: int, meetings: List[List[int]], firstPerson: int) -> List[int]:
         def find(a):
