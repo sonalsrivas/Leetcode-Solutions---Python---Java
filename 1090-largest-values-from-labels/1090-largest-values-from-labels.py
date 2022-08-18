@@ -7,18 +7,12 @@ class Solution:
             mapValsIndex[values[i]].append(i)
         sortedVals=sorted(values,reverse=True)
         mapChoosenLabels={i:0 for i in labels}
-        print(sortedVals)
         for i in sortedVals:
             iLabel=labels[mapValsIndex[i].pop()]
-            print("running for => ",i,iLabel )
             if numWanted==0:
                 break
-            #ogIndex=mapValsIndex[i]
-            #iLabel=labels[ogIndex]
             if mapChoosenLabels[iLabel]<useLimit:
-                print("CHOSE:: ", i, iLabel,maxScore)
                 mapChoosenLabels[iLabel]+=1
                 maxScore+=i
-                numWanted-=1
-            
+                numWanted-=1    
         return maxScore
