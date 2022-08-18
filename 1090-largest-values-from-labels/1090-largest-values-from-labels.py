@@ -5,9 +5,9 @@ class Solution:
         mapValsIndex={values[i]:[] for i in range(n)}
         for i in range(n):
             mapValsIndex[values[i]].append(i)
-        sortedVals=sorted(values,reverse=True)
+        values.sort(reverse=True)
         mapChoosenLabels={i:0 for i in labels}
-        for i in sortedVals:
+        for i in values:
             iLabel=labels[mapValsIndex[i].pop()]
             if numWanted==0:
                 break
