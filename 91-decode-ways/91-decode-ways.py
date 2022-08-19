@@ -10,8 +10,10 @@ class Solution:
 
             if noOfUniqueWaysToDecode[i]!=0:
                 return noOfUniqueWaysToDecode[i]
+            
             if S[i]=='0':
                 return 0
+            
             elif '0'<S[i]<'3':
                 if i+1<n and S[i+1]=='0':
                     noOfUniqueWaysToDecode[i]=noOfWaysToEncodeIthChar(i+2)
@@ -28,7 +30,6 @@ class Solution:
                     noOfUniqueWaysToDecode[i]=0
                 else:
                     noOfUniqueWaysToDecode[i]+=1
-            #print(i, noOfUniqueWaysToDecode[i])
             return noOfUniqueWaysToDecode[i]
 
         return noOfWaysToEncodeIthChar(0)
