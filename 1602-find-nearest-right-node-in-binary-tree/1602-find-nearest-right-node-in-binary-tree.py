@@ -14,13 +14,15 @@ class Solution:
             if node=='|':
                 q.append('|')
                 continue
-            if node.left:
-                q.append(node.left)
-            if node.right:
-                q.append(node.right)
+            
             if node is u:
                 if q and q[0]!='|': 
                     return q.popleft()
                 break
+            
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
             
         return None
