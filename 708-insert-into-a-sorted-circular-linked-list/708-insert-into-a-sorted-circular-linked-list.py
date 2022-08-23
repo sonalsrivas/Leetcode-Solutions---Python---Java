@@ -12,27 +12,24 @@ class Solution:
         if not head:
             newNode.next=newNode
             return newNode
-        node=head
-        #prev=None
-        if node==node.next:
-            node.next=newNode
-            newNode.next=node
+        
+        if head==head.next:
+            head.next=newNode
+            newNode.next=head
             return head
+        
+        node=head
         while node:
             if node.val<=insertVal<=node.next.val or (node.val>node.next.val and (node.val<=insertVal or node.next.val>=insertVal)):
                 nodeNext=node.next
                 node.next=newNode
                 newNode.next=nodeNext
-                print(insertVal,"zaear")
                 break
             node=node.next
             if node==head:
                 nodeNext=node.next
                 node.next=newNode
                 newNode.next=nodeNext
-                print(insertVal,"wsdf")
-                break
-            
-        
+                break  
         return head
                 
