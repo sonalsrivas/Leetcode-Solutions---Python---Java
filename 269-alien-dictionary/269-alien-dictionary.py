@@ -10,10 +10,10 @@ class Trie:
             if c not in self.children:# or self.children[-1][0]!=c:
                 newNode=Trie(c)
                 self.children[c]=newNode
-            elif (c in self.children and self.childLast==c):
-                pass
-            else:
+            elif (c in self.children and self.childLast!=c):
                 return False
+            #if self.childLast:
+                
             self.childLast=c
             self=self.children[c]
         return True if not self.children else False#True
