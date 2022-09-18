@@ -4,21 +4,18 @@ class Solution:
         n=len(chars)
         i=0
         newIndex=0
-        while i<n:
+        while i<n and newIndex<n:
             count=0
-            character=chars[i]
-            ahead=i
             chars[newIndex]=chars[i]
-            newIndex+=1
-            while ahead<n and character == chars[ahead]:
-                ahead+=1
+            while i<n and chars[i] == chars[newIndex]:
+                i+=1
                 count+=1
-            
+            newIndex+=1
             if count>1:
-                for digit in str(count):
+                strCount=str(count)
+                for digit in strCount:
                     chars[newIndex]=digit; newIndex+=1
-                compressedLen+=len(str(count))
+                compressedLen+=len(strCount)
             compressedLen+=1
-            i=ahead
         
         return compressedLen
