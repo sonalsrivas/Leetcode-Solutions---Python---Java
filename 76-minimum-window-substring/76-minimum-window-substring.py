@@ -11,9 +11,11 @@ class Solution:
                 start+=1
             return start
         
-        def addToResList(start, end):
-            resList.append(s[start:end+1])
-        
+        def addToResList(start, end, p,q):
+            if end-start<q-p:
+                p,q=start,end
+            return p,q
+            
         def removeStartChar(start):   
             # everything is there in substring .. = mapArrVisited[char]=0, more=>-1, less=> +1
             if s[start] in mapArrVisited:
@@ -29,7 +31,7 @@ class Solution:
         start=-1
         n=len(s)
 
-        resList=[]
+        p,q=-n,n
         mapArrVisited=Counter(a)
         freqReq=Counter(a)
         for end in range(n):
@@ -47,16 +49,10 @@ class Solution:
                 
                 currentLength=end-start+1
                 if not any(filter(lambda x: x>0,mapArrVisited.values())): #and 
-                    addToResList(start, end)
+                    p,q=addToResList(start, end,p,q)
                     
                     start=removeStartChar(start)
                     
                     start=fixNewStart(start,end)
                     
-        smallestSubstring=s
-        flag=False
-        for sub in resList:
-            if len(sub)<=len(smallestSubstring):
-                smallestSubstring=sub
-                flag=True
-        return smallestSubstring if flag else ''
+        return s[p:q+1] if q-p<n else ''
