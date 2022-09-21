@@ -2,24 +2,18 @@ class Solution:
     def findLeastNumOfUniqueInts(self, arr: List[int], k: int) -> int:
         n=len(arr)
         mapElementFreq=Counter(arr)
-        print("mapElementFreq=> ",mapElementFreq)
         mapFreqUniq=defaultdict(int)
         for element, freq in mapElementFreq.items():
             mapFreqUniq[freq]+=1
-        print("mapFreqUniq=> ",mapFreqUniq)
         totalUniquePeople=len(mapElementFreq)
-        for freq in sorted(mapFreqUniq.keys()):
-            
+        for freq in sorted(mapFreqUniq.keys()):    
             for _ in range(mapFreqUniq[freq]):
-                print("freq, _, k  => \t ",freq, _,k)
                 if k>=freq:
                     totalUniquePeople-=1
-                print(k>=freq, " \t totalUniquePeople = ", totalUniquePeople)
-                removePeople=min(k, freq)
-                #totalPeople-=removePeople
-                k-=removePeople
-                if k==0:
+                    k-=freq
+                else:
                     return totalUniquePeople
+        return 0
 '''
 
 arr = 
