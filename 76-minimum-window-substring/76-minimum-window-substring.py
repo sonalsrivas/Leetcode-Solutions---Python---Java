@@ -33,9 +33,9 @@ class Solution:
         resStart, resEnd=0, float('inf')
         start,end=0,0
         mapReqCharFreq = defaultdict(int)
+        
         while start<n and end<n :
             if str[start] in setArr:
-                #mapReqCharFreq = defaultdict(int)
                 end = findEnd(end)
                 start = removeRedundantStartCharsInResult(start, str)
                 resStart, resEnd = updateResultStartEnd(start,end,resStart,resEnd)
