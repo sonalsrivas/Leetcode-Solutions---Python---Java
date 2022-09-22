@@ -21,7 +21,7 @@ class Solution:
                     return start, end
             return resStart, resEnd
 
-        def removeRedundantStartCharsInResult(start, str):
+        def removeRedundantStartCharsInSubstring(start, str):
             while start<n and (str[start] not in mapReqCharFreq or mapReqCharFreq[str[start]]>setArr[str[start]]):
                 if str[start] in setArr:
                     mapReqCharFreq[str[start]]-=1
@@ -37,12 +37,12 @@ class Solution:
         while start<n and end<n :
             if str[start] in setArr:
                 end = findEnd(end)
-                start = removeRedundantStartCharsInResult(start, str)
+                start = removeRedundantStartCharsInSubstring(start, str)
                 resStart, resEnd = updateResultStartEnd(start,end,resStart,resEnd)
                 
                 prevStart=start
                 setArr[str[start]]-=1
-                start = removeRedundantStartCharsInResult(start, str)
+                start = removeRedundantStartCharsInSubstring(start, str)
                 setArr[str[prevStart]]+=1
                 
             else:
