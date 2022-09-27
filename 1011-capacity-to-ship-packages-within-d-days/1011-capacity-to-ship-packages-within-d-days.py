@@ -1,25 +1,24 @@
 class Solution:
     def shipWithinDays(self, weights, days):
-
-        def findNoOfDivisionsOfSubarray(maxSubarraySum):
-            noOfDivs=1; currentSubarraySum=0
+        lower, upper = max(weights), sum(weights)
+        
+        def can_hold_weight(cand_weight, weights):
+            min_segments = 1
+            cur_sum = 0
             for weight in weights:
-                currentSubarraySum += weight
-                if currentSubarraySum > maxSubarraySum:
-                    noOfDivs+=1
-                    currentSubarraySum=weight
-            return noOfDivs
-
-        def binarySearch(left, right, days):
-            while left<right:
-                mid=(left+right)//2
-                noOfDivisionsOfSubarray= findNoOfDivisionsOfSubarray(mid)
-                if noOfDivisionsOfSubarray <= days:
-                    right=mid
-                else:
-                    left=mid+1
-            return left
-
-        left, right = max(weights), sum(weights)
-
-        return binarySearch(left, right, days)
+                cur_sum += weight
+                if cur_sum > cand_weight:
+                    min_segments += 1
+                    cur_sum = weight
+            
+            return min_segments <= days
+        
+        while lower < upper:
+            weight_cand = (lower + upper) >> 1
+            if can_hold_weight(weight_cand, weights):
+                upper = weight_cand
+            else:
+                lower = weight_cand + 1
+        
+        return lower
+        
