@@ -13,7 +13,7 @@ class Solution:
                 if pattern[pattern_j-1]=='?' or pattern[pattern_j-1]==string[string_i-1]:
                     dp[pattern_j][string_i]=dp[pattern_j-1][string_i-1]
                 elif pattern[pattern_j-1]=='*':
-                    dp[pattern_j][string_i]=dp[pattern_j-1][string_i-1] or dp[pattern_j][string_i-1]  or dp[pattern_j-1][string_i]
+                    dp[pattern_j][string_i]=dp[pattern_j-1][string_i-1] or dp[pattern_j][string_i-1] or dp[pattern_j-1][string_i]
         for row in dp:
             print(row)
         return dp[-1][-1]
