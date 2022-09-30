@@ -15,6 +15,7 @@ class Solution:
                 resultList.append(inputMatrix[i][j])
                 inputMatrix[i][j]=None
             
+            
         def traverseColumnInMatrix (j, start_i, end_i, step_i):
             for i in range(start_i, end_i, step_i):
                 if inputMatrix[i][j]==None:
@@ -22,14 +23,13 @@ class Solution:
                 resultList.append(inputMatrix[i][j])
                 inputMatrix[i][j]=None
             
+            
         for layer in range(noOfLayers):
 
             first_row = layer
             last_col = noOfCols - 1 - layer
             last_row = noOfRows - 1 - layer
             first_col = layer
-
-            
 
 
             traverseRowInMatrix(first_row, first_col, max(first_col+1, last_col),
