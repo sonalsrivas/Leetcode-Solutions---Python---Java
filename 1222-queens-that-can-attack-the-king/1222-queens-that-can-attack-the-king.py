@@ -1,63 +1,6 @@
-'''
-Chess board: 8*8
-  Multiple Queens
-  one King
-  How many 
-  
-  queens = [[0,1],[1,0],[4,0],[0,4],[3,3],[2,4]], king = [0,0]
-  
-  
-  Can I move the queen from is initial position to someother from where I can then attack th eking.
-  
-  
-  * * *
-  *
-  @   
-  
-  queenCOl[0]=[0,1]
-  
-  A Queen has a valid move as:
-   it can move diagonally
-   move horizontally
-   move vertically
-   
- 
- Approach:
- 
-  1. Start with the king
-                             
-  2. Look upwards vertically ^, untill a queen is found
-  
-  3. Look dow v , 
-  4. 
-  
-  
-  *
-  *
-  *       *
-    *   
-      @
-    
-  *
-  *
-  *
-  
-  
-  0,0 0,1 0,2
-  1,0 1,1 1,2
-  2,0 2,1 2,2
-  
-  for the diagonal left-UP to right-DOWN.... to identify them by the exact difference
-  and for other one.... by exact sum
-  
-
-https://leetcode.com/problems/queens-that-can-attack-the-king/
-'''
 class Solution:
     def queensAttacktheKing(self, queens: List[List[int]], king: List[int]) -> List[List[int]]:
-        
         n=8
-        
         queensSet=set()
         for i,j in queens:
             queensSet.add((i,j))
