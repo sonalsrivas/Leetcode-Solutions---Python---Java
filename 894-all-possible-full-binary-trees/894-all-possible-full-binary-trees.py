@@ -16,10 +16,8 @@ class Solution:
             remaining_i=i-1
             if remaining_i%2==1:  # only move ahead with tree making when the remaining nodes is even
                 continue
-            print("evaluating for : i= ",i, remaining_i)
             for leftChildNodes in range(0,remaining_i+1):
                 rightChildNodes = remaining_i - leftChildNodes
-                print("leftChildNodes, rightChildNodes", leftChildNodes, rightChildNodes)
                 for leftSubtree in mapNTrees[leftChildNodes]:
                     
                     for rightSubtree in mapNTrees[rightChildNodes]:
@@ -27,6 +25,5 @@ class Solution:
                         root.left=leftSubtree
                         root.right=rightSubtree
                         mapNTrees[i].append(root)
-                        #resultList.append(root)
-        
+                        
         return mapNTrees[n]
