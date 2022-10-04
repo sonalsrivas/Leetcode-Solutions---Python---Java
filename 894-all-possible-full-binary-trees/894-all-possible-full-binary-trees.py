@@ -16,7 +16,7 @@ class Solution:
             remaining_i=i-1
             if remaining_i%2==1:  # only move ahead with tree making when the remaining nodes is even
                 continue
-            for leftChildNodes in range(0,remaining_i+1):
+            for leftChildNodes in range(1,remaining_i+1,2):
                 rightChildNodes = remaining_i - leftChildNodes
                 for leftSubtree in mapNTrees[leftChildNodes]:
                     
