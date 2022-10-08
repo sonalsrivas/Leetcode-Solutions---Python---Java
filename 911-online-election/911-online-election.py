@@ -9,7 +9,6 @@ class TopVotedCandidate:
 
     def q(self, t: int) -> int:
         index=self.binarySearch(t)
-        print(index,t)
         return self.leading[index]
     
     def binarySearch(self, time):
@@ -17,8 +16,6 @@ class TopVotedCandidate:
         left, right=0, self.n-1
         while left<right:
             mid=(left+right)//2
-            #if self.times[mid]==time:
-            #    return mid
             if self.times[mid]<=time:
                 if mid+1>=self.n or self.times[mid+1]>time:
                     return mid
@@ -38,7 +35,6 @@ class TopVotedCandidate:
                 self.leading[i]=self.persons[i]
             else:
                 self.leading[i]=self.leading[i-1]
-        print(self.leading)
         
 
 # Your TopVotedCandidate object will be instantiated and called as such:
