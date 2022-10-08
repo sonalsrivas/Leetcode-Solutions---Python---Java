@@ -1,21 +1,24 @@
 class Solution:
     def compress(self, chars: List[str]) -> int:
-        compressedLen=0
+        putPointer=0
+        consecutiveStart=0
+        consecutiveEnd=0
         n=len(chars)
-        i=0
-        newIndex=0
-        while i<n and newIndex<n:
-            count=0
-            chars[newIndex]=chars[i]
-            while i<n and chars[i] == chars[newIndex]:
-                i+=1
-                count+=1
-            newIndex+=1
-            if count>1:
-                strCount=str(count)
-                for digit in strCount:
-                    chars[newIndex]=digit; newIndex+=1
-                compressedLen+=len(strCount)
-            compressedLen+=1
-        
-        return compressedLen
+        while consecutiveStart<n:
+            character=chars[consecutiveStart]
+            
+            consecutiveEnd=consecutiveStart+1
+            while consecutiveEnd<n and chars[consecutiveEnd]==character:
+                consecutiveEnd+=1
+            consecutiveLength=consecutiveEnd-consecutiveStart
+            
+            chars[putPointer]=character
+            putPointer+=1
+                
+            if consecutiveLength>1:
+                for digit in str(consecutiveLength):
+                    chars[putPointer]=digit
+                    putPointer+=1
+            
+            consecutiveStart=consecutiveEnd
+        return putPointer
