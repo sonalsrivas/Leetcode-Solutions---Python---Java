@@ -13,28 +13,16 @@ class LFUCache:
         if self.mapFreqToKeysList:
             self.minimumFrequency=min(self.mapFreqToKeysList.keys())
         return
-        if not self.mapFreqToKeysList[self.minimumFrequency]:
-            nextMinimum = 1
-            while nextMinimum <= 2*10**5 and not self.mapFreqToKeysList[nextMinimum]:
-                nextMinimum += 1
-            self.minimumFrequency = nextMinimum
-        #print("===============", self.minimumFrequency)
 
     def put(self, key, value):
         if self.capacity==0:
             return
-        #print("PUTTING-- key, value = ",key, value)
-        #print("self.mapFreqToKeysList => ",self.mapFreqToKeysList)
-        #print("self.LFUCacheStore => ",self.LFUCacheStore)
         if key in self.LFUCacheStore:
             # updating map of key value
             prevFrequency = self.LFUCacheStore[key][1]
             self.LFUCacheStore[key] = [value, prevFrequency + 1]
 
-            # updating map of freq
-            #print("self.mapFreqToKeysList => ",self.mapFreqToKeysList)
             self.findNextMinimumFrequency()
-            #print("popping offffffff. ", prevFrequency, self.mapFreqToKeysList[prevFrequency])
             self.mapFreqToKeysList[prevFrequency].pop(key)#item(last=False)
             if not self.mapFreqToKeysList[prevFrequency]:
                 del self.mapFreqToKeysList[prevFrequency]
@@ -49,8 +37,6 @@ class LFUCache:
                 keyRemoved, valueRemoved = self.mapFreqToKeysList[self.minimumFrequency].popitem(last=False)
                 if not self.mapFreqToKeysList[self.minimumFrequency]:
                     del self.mapFreqToKeysList[self.minimumFrequency]
-                #print("self.mapFreqToKeysList => ",self.mapFreqToKeysList)
-                #print("self.LFUCacheStore => ",self.LFUCacheStore)
                 self.LFUCacheStore.pop(keyRemoved)
                 self.findNextMinimumFrequency()
 
@@ -64,13 +50,10 @@ class LFUCache:
             self.mapFreqToKeysList[1][key] = value
             self.minimumFrequency = 1
             self.occupiedSpace += 1
-        #print("FINAL ::: self.mapFreqToKeysList => ",self.mapFreqToKeysList)
-        #print("FINAL ::: self.LFUCacheStore => ",self.LFUCacheStore)
-
+            
     def get(self, key):
         if self.capacity==0:
             return -1
-        #print("GETTING-- key = ",key,"The MAP is: ")
         if key in self.LFUCacheStore :
             self.put(key, self.LFUCacheStore[key][0])
             return self.LFUCacheStore[key][0]
