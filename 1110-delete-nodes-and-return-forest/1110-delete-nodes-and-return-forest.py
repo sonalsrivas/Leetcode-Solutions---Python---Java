@@ -5,25 +5,21 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def delNodes(self, root, to_delete):
+    def delNodes(self, root, to_delete, prev=None, ifRootIsHead=True):
+        
         result=[]
-        def helper(root, prev, ifHead):
-            if not root:
-                return
-            if root.val in to_delete:
-                if prev:
-                    if prev.left==root:
-                        prev.left=None
-                    if prev.right==root:
-                        prev.right=None
-                helper(root.left, root, True)
-                helper(root.right, root, True)
-            else:
-                if ifHead:
-                    result.append(root)
-                helper(root.left, root, False)
-                helper(root.right, root, False)
-                
-        helper(root, None, True)
-        return result
+        if not root:
+            return result
+        if root.val in to_delete:
+            if prev:
+                if prev.left==root:
+                    prev.left=None
+                elif prev.right==root:
+                    prev.right=None
+            return self.delNodes(root.left, to_delete, root, True) + self.delNodes(root.right, to_delete, root, True)
+        
+        if ifRootIsHead:
+            result.append(root)
+            
+        return result+self.delNodes(root.left, to_delete, root, False) + self.delNodes(root.right, to_delete, root, False)
     
