@@ -4,12 +4,9 @@ class Solution:
         stackMinimumOnRight=[0]
         n=len(prices)
         for i in range(n-1,-1,-1):
-            if stackMinimumOnRight[top] <= prices[i]:
-                discount=stackMinimumOnRight[top]
-            else:
-                while stackMinimumOnRight[top] > prices[i]:
-                    stackMinimumOnRight.pop()
-                discount=stackMinimumOnRight[top]
+            while stackMinimumOnRight[top] > prices[i]:
+                stackMinimumOnRight.pop()
+            discount=stackMinimumOnRight[top]
             stackMinimumOnRight.append(prices[i])
             prices[i]-= discount
         return prices
