@@ -20,7 +20,8 @@ class Solution:
                 for station in mapBusRoutes[possibleNextBus]:
                     if target in mapBusRoutes[possibleNextBus]:
                         return noOfBuses+1
-                
-                    q.append((station, noOfBuses+1))
+                    if station not in visitedStation:
+                        q.append((station, noOfBuses+1))
+                        visitedStation.add(station)
                 mapBusRoutes[possibleNextBus]=set()
         return -1
