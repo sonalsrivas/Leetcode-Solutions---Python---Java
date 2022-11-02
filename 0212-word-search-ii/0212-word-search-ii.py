@@ -1,18 +1,14 @@
 class Trie:
 
     def __init__(self,car=''):
-        """
-        Initialize your data structure here.
-        """
+        
         self.character=car
         self.children=dict()        # char:TrieNode
         self.word=False
         self.parent=None
 
     def insert(self, word: str) -> None:
-        """
-        Inserts a word into the trie.
-        """
+        
         root=self
         for w in word:
             if w in root.children:
@@ -31,8 +27,7 @@ class Trie:
                 
             if len(self.parent.children)>=1:
                 return
-            
-            
+
 
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
