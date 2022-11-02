@@ -10,7 +10,7 @@ class Solution:
         mapBusRoutes={i:set(routes[i]) for i in range(len(routes))}
         q=deque()
         q.append((source,0))
-        #visitedStation = set([source])
+        visitedStation = set([source])
         while q:
             station, noOfBuses = q.popleft()
             
@@ -18,8 +18,8 @@ class Solution:
                 for station in mapBusRoutes[possibleNextBus]:
                     if target in mapBusRoutes[possibleNextBus]:
                         return noOfBuses+1
-                    #if station not in visitedStation:
-                    q.append((station, noOfBuses+1))
-                    #visitedStation.add(station)
+                    if station not in visitedStation:
+                        q.append((station, noOfBuses+1))
+                        visitedStation.add(station)
                 mapBusRoutes[possibleNextBus]=set()
         return -1
